@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gecimmo_application/screens/log_in.dart';
 
-class ScreenFix extends StatelessWidget {
-  const ScreenFix({super.key});
+class GetStarted extends StatelessWidget {
+  const GetStarted({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +58,9 @@ class ScreenFix extends StatelessWidget {
                         ),
                       );
                     },
-                    
                     style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      textStyle: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.bold),
                       minimumSize: const Size(double.infinity, 48),
                       backgroundColor: const Color(0xFFD0B3A2),
                       shape: RoundedRectangleBorder(
