@@ -1,34 +1,45 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gecimmo_application/screens/side_menu.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class MyLogin extends StatefulWidget {
+  const MyLogin({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  _MyLoginState createState() => _MyLoginState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  bool _obscureText = true;
+class _MyLoginState extends State<MyLogin> {
+  bool isChecked = false;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
-  String? _emailValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your email';
-    }
-    if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-        .hasMatch(value)) {
-      return 'Please enter a valid email';
-    }
-    return null;
+  late Box box1;
+
+  @override
+  void initState() {
+    //
+    super.initState();
+    createBox();
   }
 
-  String? _passwordValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+  void createBox() async {
+    box1 = await Hive.openBox('logininfo');
+    getdata();
+  }
+
+  void getdata() async {
+    if (box1.get('email') != null) {
+      email.text = box1.get('email');
+      isChecked = true;
+      setState(() {});
     }
-    return null;
+    if (box1.get('password') != null) {
+      password.text = box1.get('password');
+      isChecked = true;
+      setState(() {});
+    }
   }
 
   @override
@@ -36,70 +47,178 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          // Background image
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/imgBck.png'),
                   fit: BoxFit.cover),
             ),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.transparent, Color(0xFF111122)],
-              ),
-            ),
-          ),
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-                    Form(
-                      key: _formKey,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Widget du logo (par exemple, un widget Image)
-                          Image.asset('assets/images/logo.png',
-                              width: 50, height: 50),
-
-                          // Widget du texte
-                          const Text(
-                            'G-TREND',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 32,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w700,
-                            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Stack(
+                children: [
+                  Container(),
+                  // Container for the logo and the name
+                  Container(
+                    padding: const EdgeInsets.only(left: 35, top: 130),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: 50,
+                          height: 50,
+                        ),
+                        const Text(
+                          'G-TREND',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  //Shadow behind the screen
+                  Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Color(0xFF2F3D4B)],
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 35, right: 35),
+                            child: Column(
+                              children: [
+                                const SizedBox(),
+                                TextField(
+                                  controller: email,
+                                  style: const TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0)),
+                                  decoration: InputDecoration(
+                                      fillColor: Colors.white70,
+                                      filled: true,
+                                      hintText: "Email",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(26),
+                                      )),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                TextField(
+                                  controller: password,
+                                  style: const TextStyle(),
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      fillColor: Colors.white70,
+                                      filled: true,
+                                      hintText: "Password",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(26),
+                                      )),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "Remember Me",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        fontSize: 18,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Checkbox(
+                                      value: isChecked,
+                                      fillColor: MaterialStateProperty.all(
+                                          const Color.fromARGB(
+                                              255, 255, 255, 255)),
+                                      checkColor:
+                                          const Color.fromARGB(255, 9, 60, 180),
+                                      onChanged: (value) {
+                                        isChecked = !isChecked;
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {},
+                                        child: const Text(
+                                          'Forgot Password',
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            fontSize: 18,
+                                            fontFamily: 'Times New Roman',
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )),
+                                    CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor: const Color(0xFFD0B3A2),
+                                      child: IconButton(
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return const SideMenu();
+                                                },
+                                              ),
+                                            );
+                                            login();
+                                          },
+                                          icon: const Icon(
+                                            Icons.arrow_forward,
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
-                      },
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
-                            const Size(double.infinity, 48)),
-                      ),
-                      child: const Text('Log in'),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void login() {
+    if (isChecked) {
+      box1.put('email', email.text);
+      box1.put('password', password.text);
+    }
   }
 }

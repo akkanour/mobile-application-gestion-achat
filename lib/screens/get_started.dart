@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gecimmo_application/screens/log_in.dart';
+import 'package:gecimmo_application/screens/login.dart';
 
 class GetStarted extends StatelessWidget {
   const GetStarted({super.key});
@@ -54,7 +54,7 @@ class GetStarted extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LogIn(),
+                          builder: (context) => const MyLogin(),
                         ),
                       );
                     },
