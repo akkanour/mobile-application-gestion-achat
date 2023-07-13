@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gecimmo_application/screens/dash_fix.dart';
-import 'package:gecimmo_application/screens/get_started.dart';
 //import 'package:gecimmo_application/screens/dashboard.dart';
 //import 'package:gecimmo_application/screens/get_started.dart';
 //import 'package:gecimmo_application/screens/login.dart';
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GetStarted(),
+      home: DashboardFix(),
     );
   }
 }

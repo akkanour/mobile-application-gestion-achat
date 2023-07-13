@@ -1,7 +1,8 @@
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gecimmo_application/screens/sidemenu.dart';
+import 'package:mrx_charts/mrx_charts.dart';
 
 // ignore: must_be_immutable
 class DashboardFix extends StatelessWidget {
@@ -19,15 +20,14 @@ class DashboardFix extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      
       home: Scaffold(
-        drawer: const NavBar(),
         appBar: AppBar(
-          
           backgroundColor: const Color(0xFFD0B3A2),
           leading: IconButton(
             icon: const Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer(),
+            onPressed: () {
+              // Logique du menu
+            },
           ),
           actions: [
             IconButton(
@@ -41,99 +41,92 @@ class DashboardFix extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.notifications_none),
-              onPressed: () {},        
+              onPressed: () {
+                // Logique des paramètres
+              },
             ),
           ],
         ),
         body: Column(
-  children: [
-    const Text(
-      "Demandes de prix",
-      style: TextStyle(
-        fontSize: 19,
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-    const Text(
-      "65",
-      style: TextStyle(
-        fontSize: 40,
-        fontWeight: FontWeight.w700,
-      ),
-    ),
-    const Text(
-      "31 622 634,16",
-      style: TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w300,
-      ),
-    ),
-    Stack(
-      children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            color: Color(0xffcccccc),
-          ),
-        ),
-        const SizedBox(
-          width: 26.66666603088379,
-          height: 26.66666603088379,
-        ),
-        Container(
-          width: 168,
-          height: 137,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: const Color(0xff555a71),
-          ),
-          child: Column(
-            children: [
-              const Text(
-                "Marchés",
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Text(
-                "53",
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Text(
-                "21 864 584 080,00",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-    Stack(
-      children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            color: Color(0xffcccccc),
-          ),
-        ),
-        const SizedBox(
-          width: 26.66666603088379,
-          height: 26.66666603088379,
-        ),
-        // Ajoutez ici les informations textuelles pour le deuxième conteneur si nécessaire
-      ],
-    ),
-  ],
+children: [
+const Text(
+"Demandes de prix",
+style: TextStyle(
+fontSize: 19,
+fontWeight: FontWeight.w400,
+)
 ),
+const Text(
+"65",
+style: TextStyle(
+fontSize: 40,
+fontWeight: FontWeight.w700,
+)
+),
+Text(
+"31 622 634,16",
+style: TextStyle(
+fontSize: 15,
+fontWeight: FontWeight.w300,
+)
+),
+Stack(children: [ 
+Container(
+width: 40,
+height: 40,
+decoration: BoxDecoration(
+color: Color(0xffcccccc))
+),
+const SizedBox(
+width: 26.66666603088379,
+height: 26.66666603088379,
+),
+Container(
+width: 168,
+height: 137,
+decoration: BoxDecoration(
+borderRadius: BorderRadius.circular(10),
+color: Color(0xff555a71))
+),
+Text(
+"Marchés",
+style: TextStyle(
+fontSize: 19,
+fontWeight: FontWeight.w700,
+)
+),
+Text(
+"53",
+style: TextStyle(
+fontSize: 40,
+fontWeight: FontWeight.w700,
+)
+),
+Text(
+"21 864 584 080,00",
+style: TextStyle(
+fontSize: 15,
+fontWeight: FontWeight.w300,
+)
+),
+],
+),
+Stack(children: [ 
+Container(
+width: 40,
+height: 40,
+decoration: BoxDecoration(
+color: Color(0xffcccccc))
+),
+Container(
+width: 26.66666603088379,
+height: 26.66666603088379,
+)
+]
+),
+]
+),
+
 
 
         bottomNavigationBar: ClipRRect(
