@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gecimmo_application/screens/dash_fix.dart';
-import 'package:gecimmo_application/screens/side_menu.dart';
+import 'package:gecimmo_application/screens/home.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -166,7 +165,7 @@ class _MyLoginState extends State<MyLogin> {
                                               MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) {
-                                                  return DashboardFix();
+                                                  return const HomePage();
                                                 },
                                               ),
                                             );
