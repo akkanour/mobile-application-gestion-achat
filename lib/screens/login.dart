@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gecimmo_application/screens/dash_fix.dart';
 import 'package:gecimmo_application/screens/side_menu.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
-
+  
   @override
-  _MyLoginState createState() => _MyLoginState();
+  State<StatefulWidget> createState() {
+    return _MyLoginState();
+  }
+
+ 
 }
 
 class _MyLoginState extends State<MyLogin> {
@@ -95,7 +100,7 @@ class _MyLoginState extends State<MyLogin> {
                   SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height * 0.5),
+                          top: MediaQuery.of(context).size.height * 0.37),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -113,7 +118,7 @@ class _MyLoginState extends State<MyLogin> {
                                       filled: true,
                                       hintText: "Email",
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(26),
+                                        borderRadius: BorderRadius.circular(10),
                                       )),
                                 ),
                                 const SizedBox(
@@ -128,36 +133,10 @@ class _MyLoginState extends State<MyLogin> {
                                       filled: true,
                                       hintText: "Password",
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(26),
+                                        borderRadius: BorderRadius.circular(10),
                                       )),
                                 ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      "Remember Me",
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        fontSize: 18,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Checkbox(
-                                      value: isChecked,
-                                      fillColor: MaterialStateProperty.all(
-                                          const Color.fromARGB(
-                                              255, 255, 255, 255)),
-                                      checkColor:
-                                          const Color.fromARGB(255, 9, 60, 180),
-                                      onChanged: (value) {
-                                        isChecked = !isChecked;
-                                        setState(() {});
-                                      },
-                                    ),
-                                  ],
-                                ),
+                                const SizedBox(height: 30,),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -187,7 +166,7 @@ class _MyLoginState extends State<MyLogin> {
                                               MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) {
-                                                  return const SideMenu();
+                                                  return DashboardFix();
                                                 },
                                               ),
                                             );
