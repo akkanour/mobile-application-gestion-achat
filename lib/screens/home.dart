@@ -91,6 +91,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       drawer: Drawer(
+        backgroundColor: const Color(0xFF2F3D4B),
         child: SingleChildScrollView(
             child: Column(
               children: [
