@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gecimmo_application/screens/get_started.dart';
 import 'package:gecimmo_application/screens/home.dart';
-import 'package:gecimmo_application/screens/login.dart';
 import 'package:gecimmo_application/screens/validation.dart';
 
 class SideMenu extends StatelessWidget {
@@ -14,47 +14,65 @@ class SideMenu extends StatelessWidget {
         child: Stack(
           children: [
             ListView(
-              // Remove padding
+              // Remove padding,
               padding: EdgeInsets.zero,
               children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Color(0xFFD0B3A2)),
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
+                Stack(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 30),
+                      decoration: const ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 1.5, color: Color(0xFFD0B3A2)),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  child: UserAccountsDrawerHeader(
-                    accountName: const Text('Salima leyla',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    accountEmail: const Text('Administration',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        )),
-                    currentAccountPicture: CircleAvatar(
-                      child: ClipOval(
-                        child: Image.asset(
-                          'assets/images/ellipse-1-bg.png',
-                          fit: BoxFit.cover,
-                          width: 90,
-                          height: 90,
+                      child: UserAccountsDrawerHeader(
+                        accountName: const Text('Salima leyla',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            )),
+                        accountEmail: const Text('Administration',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            )),
+                        currentAccountPicture: CircleAvatar(
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/ellipse-1-bg.png',
+                              fit: BoxFit.cover,
+                              width: 90,
+                              height: 90,
+                            ),
+                          ),
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF2F3D4B),
                         ),
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF2F3D4B),
+                    Positioned(
+                      top: 45,
+                      right: 30,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.cancel_outlined,
+                          color:  Color.fromARGB(255, 255, 255, 255),
+                          size: 40,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 ListTile(
                     leading: const Icon(
@@ -162,9 +180,7 @@ class SideMenu extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomImageIcon(
-                      imagePath: 'assets/images/settings.png',
-                      size: 33,
+                    IconButton(
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -172,22 +188,30 @@ class SideMenu extends StatelessWidget {
                               builder: (context) => const HomePage()),
                         );
                       },
+                      icon: const Icon(Icons.settings_outlined,
+                          color: Colors.white, size: 30),
                     ),
-                    CustomImageIcon(
-                      imagePath: 'assets/images/account_circle.png',
-                      size: 33,
-                      onPressed: () {},
-                    ),
-                    CustomImageIcon(
-                      imagePath: 'assets/images/logout.png',
-                      size: 33,
+                    IconButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MyLogin()),
+                              builder: (context) => const HomePage()),
                         );
                       },
+                      icon: const Icon(Icons.account_circle_outlined,
+                          color: Colors.white, size: 30),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GetStarted()),
+                        );
+                      },
+                      icon: const Icon(Icons.logout,
+                          color: Color(0xFFD0B3A2), size: 30),
                     ),
                   ],
                 ),
@@ -196,27 +220,6 @@ class SideMenu extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class CustomImageIcon extends StatelessWidget {
-  final String imagePath;
-  final double size;
-
-  const CustomImageIcon({
-    super.key,
-    required this.imagePath,
-    required this.size,
-    required Null Function() onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      imagePath,
-      width: size,
-      height: size,
     );
   }
 }
