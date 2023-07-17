@@ -64,12 +64,12 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return Card(
+                return const Card(
                   child: ListTile(
-                    leading: const Icon(Icons.home),
-                    title: const Text('Titre'),
-                    subtitle: const Text('Sous-titre'),
-                    trailing: const Icon(Icons.more_vert),
+                    leading: Icon(Icons.home),
+                    title: Text('Titre'),
+                    subtitle: Text('Sous-titre'),
+                    trailing: Icon(Icons.more_vert),
                   ),
                 );
               },
