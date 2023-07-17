@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:gecimmo_application/data.dart';
 import 'package:gecimmo_application/screens/sidemenu.dart';
 
 // ignore: must_be_immutable
@@ -14,42 +16,32 @@ class Validation extends StatelessWidget {
     }
   }
 
+  List<Info> infos = List.of(Data.infos);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF2F3D4B),
       drawer: const SideMenu(),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFD0B3A2),
-        title: const TextField(
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.all(4),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+        shape: ShapeBorder.lerp(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            hintText: 'Recherche par mots clés',
-            hintStyle: TextStyle(
-              color: Color(0xFFD0B3A2),
-              fontSize: 14,
-              fontFamily: 'Barlow Semi Condensed',
-              fontWeight: FontWeight.w700,
-            ),
-            alignLabelWithHint: true,
-            isDense: true,
+            null,
+            0),
+        backgroundColor: const Color(0xFF2F3D4B),
+        centerTitle: true,
+        title:
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(
+            'Validation Workflow',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontFamily: 'Barlow Semi Condensed',
+                fontWeight: FontWeight.w700),
           ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
-          ),
-        ],
+        ]),
       ),
       body: Column(
         children: <Widget>[
@@ -91,77 +83,49 @@ class Validation extends StatelessWidget {
               ),
             ),
           ),
-          /*Padding(
-            padding: const EdgeInsets.all(0),
-             child: ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(items[index]),
+          Expanded(
+            child: SizedBox(
+              width: 380,
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemCount: infos.length,
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider();
+                },
+                itemBuilder: (BuildContext context, int index) {
+                  return Slidable(
+                    key: ValueKey(index),
+                    startActionPane: ActionPane(
+                      motion: const BehindMotion(),
+                      children: [
+                        SlidableAction(
+                          foregroundColor: Colors.white,
+                          icon: Icons.check,
+                          backgroundColor: const Color(0xFF05FF00),
+                          onPressed: (context) => {},
+                        ),
+                      ],
+                    ),
+                    endActionPane: ActionPane(
+                      //dismissible: DismissiblePane(onDismissed: () {}),
+                      motion: const BehindMotion(),
+                      children: [
+                        SlidableAction(
+                          icon: Icons.delete,
+                          backgroundColor: const Color(0xFFFF0000),
+                          onPressed: (context) => {},
+                        ),
+                      ],
+                    ),
+                    child: listTile(index),
                   );
-                    },
-              )
-          )*/
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                color: Colors.white,
-              ),
-
-              //shrinkWrap: true,
-              //itemCount: 2,
-              //itemBuilder: (BuildContext context, int index) =>
-              child: const ListTile(
-                title: Text('Numéro :FA-111\nMontant : 10000,00\nRésponsable Sur La Validation: Yassine'),
-                
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                color: Colors.white,
-              ),
-
-              //shrinkWrap: true,
-              //itemCount: 2,
-              //itemBuilder: (BuildContext context, int index) =>
-              child: const ListTile(
-                title: Text('Numéro :FA-111\nMontant : 10000,00\nRésponsable Sur La Validation: Yassine'),
-                
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                color: Colors.white,
-              ),
-
-              
-              child: const ListTile(
-                title: Text('Numéro :FA-111\nMontant : 10000,00\nRésponsable Sur La Validation: Yassine'),
-                
+                },
               ),
             ),
           ),
         ],
       ),
-      
 
-      //),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
@@ -188,6 +152,16 @@ class Validation extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget listTile(int index) {
+    return Container(
+      color: Colors.white,
+      child: ListTile(
+        title: Text('Numéro :'
+            " ${infos[index].numero!}\nMontant :${infos[index].montant!}\nRésponsable Sur La Validation :${infos[index].respo!}"),
       ),
     );
   }
