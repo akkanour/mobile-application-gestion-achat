@@ -1,51 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gecimmo_application/screens/home.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
-  
+
   @override
   State<StatefulWidget> createState() {
     return _MyLoginState();
   }
-
- 
 }
 
 class _MyLoginState extends State<MyLogin> {
-  bool isChecked = false;
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-
-  late Box box1;
-
   @override
-  void initState() {
-    //
-    super.initState();
-    createBox();
-  }
-
-  void createBox() async {
-    box1 = await Hive.openBox('logininfo');
-    getdata();
-  }
-
-  void getdata() async {
-    if (box1.get('email') != null) {
-      email.text = box1.get('email');
-      isChecked = true;
-      setState(() {});
-    }
-    if (box1.get('password') != null) {
-      password.text = box1.get('password');
-      isChecked = true;
-      setState(() {});
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +75,6 @@ class _MyLoginState extends State<MyLogin> {
                               children: [
                                 const SizedBox(),
                                 TextField(
-                                  controller: email,
                                   style: const TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0)),
                                   decoration: InputDecoration(
@@ -124,7 +89,6 @@ class _MyLoginState extends State<MyLogin> {
                                   height: 30,
                                 ),
                                 TextField(
-                                  controller: password,
                                   style: const TextStyle(),
                                   obscureText: true,
                                   decoration: InputDecoration(
@@ -135,7 +99,9 @@ class _MyLoginState extends State<MyLogin> {
                                         borderRadius: BorderRadius.circular(10),
                                       )),
                                 ),
-                                const SizedBox(height: 30,),
+                                const SizedBox(
+                                  height: 30,
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -169,7 +135,6 @@ class _MyLoginState extends State<MyLogin> {
                                                 },
                                               ),
                                             );
-                                            login();
                                           },
                                           icon: const Icon(
                                             Icons.arrow_forward,
@@ -191,12 +156,5 @@ class _MyLoginState extends State<MyLogin> {
         ],
       ),
     );
-  }
-
-  void login() {
-    if (isChecked) {
-      box1.put('email', email.text);
-      box1.put('password', password.text);
-    }
   }
 }
