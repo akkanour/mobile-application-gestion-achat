@@ -99,6 +99,7 @@ class Validation extends StatelessWidget {
                       motion: const BehindMotion(),
                       children: [
                         SlidableAction(
+                          label: "VALIDER",
                           foregroundColor: Colors.white,
                           icon: Icons.check,
                           backgroundColor: const Color(0xFF05FF00),
@@ -107,11 +108,11 @@ class Validation extends StatelessWidget {
                       ],
                     ),
                     endActionPane: ActionPane(
-                      //dismissible: DismissiblePane(onDismissed: () {}),
                       motion: const BehindMotion(),
                       children: [
                         SlidableAction(
-                          icon: Icons.delete,
+                          label: "DELETE",
+                          icon: Icons.delete_outline,
                           backgroundColor: const Color(0xFFFF0000),
                           onPressed: (context) => {},
                         ),
