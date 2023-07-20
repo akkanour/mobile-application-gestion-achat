@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gecimmo_application/data.dart';
+import 'package:gecimmo_application/screens/home.dart';
 import 'package:gecimmo_application/screens/sidemenu.dart';
 
 // ignore: must_be_immutable
@@ -134,8 +135,7 @@ class Validation extends StatelessWidget {
         ),
         child: BottomNavigationBar(
           backgroundColor: const Color(0xFFD0B3A2),
-          selectedItemColor: const Color.fromARGB(
-              255, 255, 255, 255), // Couleur de l'élément sélectionné
+          selectedItemColor: const Color.fromARGB(66, 52, 49, 49), // Couleur de l'élément sélectionné
           unselectedItemColor: const Color.fromARGB(
               255, 255, 255, 255), // Couleur des éléments non sélectionnés
           items: const <BottomNavigationBarItem>[
@@ -152,6 +152,25 @@ class Validation extends StatelessWidget {
               label: 'Balance',
             ),
           ],
+          onTap: (int index) {
+            // Handle navigation here
+            if (index == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            } else if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Validation()),
+              );
+            } else if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Validation()),
+              );
+            }
+          },
         ),
       ),
     );

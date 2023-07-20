@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gecimmo_application/screens/get_started.dart';
 import 'package:gecimmo_application/screens/login.dart';
 import 'package:gecimmo_application/screens/sidemenu.dart';
+import 'package:gecimmo_application/screens/validation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,293 +50,80 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SizedBox.expand(
-        child: Container(
-          padding: const EdgeInsets.only(top: 30),
-          decoration: BoxDecoration(color: Color(0xFF2F3D4B)),
-          child: Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 25,
-              padding: const EdgeInsets.all(15),
+      body: Scaffold(
+        backgroundColor: Color(0xFF2F3D4B),
+        body: Stack(
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF555A71),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xFF555A71),
                       ),
+                      width: MediaQuery.of(context).size.width / 2.3,
+                      height: MediaQuery.of(context).size.width / 2.6,
                     ),
-                    child: Stack(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(height: 25),
-                            Text(
-                              'Demandes de prix',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.3,
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              '65',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.80,
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              '31 622 634,16',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w300,
-                                letterSpacing: 0.30,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          right: 20,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 50,
-                            ),
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyLogin(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    SizedBox(width: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xFF555A71),
+                      ),
+                      width: MediaQuery.of(context).size.width / 2.3,
+                      height: MediaQuery.of(context).size.width / 2.6,
                     ),
-                  ),
+                  ],
                 ),
-                Container(
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF555A71),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xFF555A71),
                       ),
+                      width: MediaQuery.of(context).size.width / 2.3,
+                      height: MediaQuery.of(context).size.width / 2.6,
                     ),
-                    child: Stack(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(height: 30),
-                            Text(
-                              'Avenants',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 19,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.38,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '6',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.80,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '0,00',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w300,
-                                letterSpacing: 0.30,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          right: 20,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 60,
-                            ),
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyLogin(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    SizedBox(width: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xFF555A71),
+                      ),
+                      width: MediaQuery.of(context).size.width / 2.3,
+                      height: MediaQuery.of(context).size.width / 2.6,
                     ),
-                  ),
+                  ],
                 ),
-                Container(
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF555A71),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(height: 30),
-                            Text(
-                              'Appels d\'offres',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 19,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.38,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '24',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.80,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '1 000 038 010,00',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w300,
-                                letterSpacing: 0.30,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          right: 20,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 60,
-                            ),
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyLogin(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Color(0xFFD0B3A2),
+                  radius: 28,
+                  child: Icon(Icons.fact_check_outlined,
+                      color: Colors.white, size: 30),
                 ),
-                Container(
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF555A71),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        const Column(
-                          children: [
-                            SizedBox(height: 30),
-                            Text(
-                              'Marchés',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 19,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.38,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '53',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.80,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '21 864 584 080,00',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontFamily: 'Barlow Semi Condensed',
-                                fontWeight: FontWeight.w300,
-                                letterSpacing: 0.30,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          right: 20,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 60,
-                            ),
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyLogin(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                Text(
+                  "Bons de commande par projet",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Barlow Semi Condensed',
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ],
             ),
-          
-          ),
+          ],
         ),
       ),
       bottomNavigationBar: ClipRRect(
@@ -344,10 +133,10 @@ class _HomePageState extends State<HomePage> {
         ),
         child: BottomNavigationBar(
           backgroundColor: const Color(0xFFD0B3A2),
-          selectedItemColor: const Color.fromARGB(
-              255, 97, 92, 92), // Couleur de l'élément sélectionné
-          unselectedItemColor: const Color.fromARGB(
-              255, 255, 255, 255), // Couleur des éléments non sélectionnés
+          selectedItemColor:
+              Color.fromARGB(66, 52, 49, 49), // Set selected icon color to blue
+          unselectedItemColor:
+              Colors.white, // Set unselected icons color to white
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -362,6 +151,25 @@ class _HomePageState extends State<HomePage> {
               label: 'Balance',
             ),
           ],
+          onTap: (int index) {
+            // Handle navigation here
+            if (index == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            } else if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Validation()),
+              );
+            } else if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Validation()),
+              );
+            }
+          },
         ),
       ),
     );
