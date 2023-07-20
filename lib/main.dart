@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gecimmo_application/screens/get_started.dart';
 import 'package:gecimmo_application/screens/home.dart';
 
 void main() {
