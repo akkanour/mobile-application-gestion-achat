@@ -48,36 +48,37 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          Divider(),
-          GridView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.2,
-              crossAxisSpacing: 1,
-              mainAxisSpacing: 10,
-            ),
-            primary: false,
-            padding: const EdgeInsets.all(10),
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFF555A71),
-                  ),
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 0, left: 10, right: 0),
-                  child: Stack(
-                    children: [
-                      ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const <Widget>[
-                          Text(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const Divider(),
+            GridView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.2,
+                crossAxisSpacing: 1,
+                mainAxisSpacing: 10,
+              ),
+              primary: false,
+              padding: const EdgeInsets.all(10),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF555A71),
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 10, bottom: 0, left: 10, right: 0),
+                    child: Stack(
+                      children: [
+                        ListView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: const <Widget>[
+                            Text(
                               'Demande de prix',
                               style: TextStyle(
                                 fontSize: 18,
@@ -103,40 +104,39 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.white,
                               ),
                             ),
-                          
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 50,
+                          ],
+                        ),
+                        const Align(
+                          alignment: Alignment.bottomRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 50,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFF555A71),
-                  ),
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 0, left: 10, right: 0),
-                  child: Stack(
-                    children: [
-                      ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const <Widget>[
-                          Text(
-                              'Demande de prix',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF555A71),
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 10, bottom: 0, left: 10, right: 0),
+                    child: Stack(
+                      children: [
+                        ListView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: const <Widget>[
+                            Text(
+                              'Avenants',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Divider(),
                             Text(
-                              '65',
+                              '6',
                               style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.w700,
@@ -154,47 +154,46 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Divider(),
                             Text(
-                              '31 334 000,00',
+                              '00,00',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white,
                               ),
                             ),
-                          
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 50,
+                          ],
+                        ),
+                        const Align(
+                          alignment: Alignment.bottomRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 50,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFF555A71),
-                  ),
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 0, left: 10, right: 0),
-                  child: Stack(
-                    children: [
-                      ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const <Widget>[
-                          Text(
-                              'Demande de prix',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF555A71),
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 10, bottom: 0, left: 10, right: 0),
+                    child: Stack(
+                      children: [
+                        ListView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: const <Widget>[
+                            Text(
+                              'Appel d\'offres',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -203,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Divider(),
                             Text(
-                              '65',
+                              '24',
                               style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.w700,
@@ -212,47 +211,46 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Divider(),
                             Text(
-                              '31 334 000,00',
+                              '1 000 038 010,00',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white,
                               ),
                             ),
-                          
-                        ],
-                      ),
-                      const Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 50,
+                          ],
+                        ),
+                        const Align(
+                          alignment: Alignment.bottomRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 50,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFF555A71),
-                  ),
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 0, left: 10, right: 0),
-                  child: Stack(
-                    children: [
-                      ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const <Widget>[
-                          Text(
-                              'Demande de prix',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF555A71),
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 10, bottom: 0, left: 10, right: 0),
+                    child: Stack(
+                      children: [
+                        ListView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: const <Widget>[
+                            Text(
+                              'Marchés',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -261,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Divider(),
                             Text(
-                              '65',
+                              '53',
                               style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.w700,
@@ -270,45 +268,71 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Divider(),
                             Text(
-                              '31 334 000,00',
+                              '21 754 080,00',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white,
                               ),
                             ),
-                          
-                        ],
-                      ),
-                      const Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 50,
+                          ],
+                        ),
+                        const Align(
+                          alignment: Alignment.bottomRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 50,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              
               ],
-          ),
-          const Text(
-            'Glisser vers la gauche pour validé  le Workflow \nou vers le droit pour refusé ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: 'Barlow Semi Condensed',
-              fontWeight: FontWeight.w500,
             ),
-          ),
-        ],
+            const Divider(),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Color(0xFFD0B3A2),
+                  child: Icon(
+                    Icons.fact_check_outlined,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                ),
+                Text('Bons de commandes par projet',
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    )),
+              ],
+            ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Container(
+                height: 240, // Réglez la hauteur du graphique selon vos besoins
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+                child: Image.asset(
+                  'assets/images/untitled-design-19-1-bg.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Divider(),
+          ],
+        ),
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
