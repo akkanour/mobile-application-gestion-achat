@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gecimmo_application/data.dart';
@@ -6,18 +5,118 @@ import 'package:gecimmo_application/screens/home.dart';
 import 'package:gecimmo_application/screens/sidemenu.dart';
 
 // ignore: must_be_immutable
-class Validation extends StatelessWidget {
-  Validation({Key? key}) : super(key: key);
-  TextEditingController searchController = TextEditingController();
+class Validation extends StatefulWidget {
+  const Validation({Key? key}) : super(key: key);
 
-  void performSearch(String searchText) {
-    // Logique de recherche
-    if (kDebugMode) {
-      print('Recherche : $searchText');
-    }
-  }
+  @override
+  State<Validation> createState() => _ValidationState();
+}
+
+class _ValidationState extends State<Validation> {
+  PageController pageController = PageController();
 
   List<Info> infos = List.of(Data.infos);
+  List<Info> items = <Info>[];
+
+  @override
+  initState() {
+    items = infos;
+    super.initState();
+  }
+
+  void filterSearchResults(String query) {
+    List<Info> result = <Info>[];
+    if (query.isEmpty) {
+      result = infos;
+    } else {
+      result = infos
+          .where((infos) =>
+              infos.respo!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      items = result;
+    });
+  }
+
+  void showAlertDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: const Color(0xFF2F3D4B),
+            content: const Text(
+              'Vous voulez vraiment enregistrer cette modification',
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Validation()),
+                    );
+                  },
+                  child: const Icon(Icons.block)),
+              ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Validation()),
+                    );
+                  },
+                  child: const Icon(Icons.check_circle_outline_rounded)),
+            ],
+          );
+        });
+  }
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    String? codeDialog;
+    String? valueText;
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            backgroundColor: const Color(0xFF2F3D4B),
+            content: TextField(
+              onChanged: (value) {
+                setState(() {
+                  valueText = value;
+                });
+              },
+              decoration: const InputDecoration(
+                hintText: "Observation",
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+              ),
+              maxLines: 5,
+              minLines: 1,
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                color: Colors.white,
+                textColor: Colors.black,
+                child: const Text('Enregister'),
+                onPressed: () {
+                  showAlertDialog();
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +158,15 @@ class Validation extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(10),
+          Padding(
+            padding: const EdgeInsets.all(10),
             child: TextField(
+              // ignore: non_constant_identifier_names
+              onChanged: (Value) {
+                filterSearchResults(Value);
+              },
               textAlign: TextAlign.center,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
                 contentPadding: EdgeInsets.all(10),
@@ -89,34 +192,38 @@ class Validation extends StatelessWidget {
               width: 380,
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
-                itemCount: infos.length,
+                itemCount: items.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider();
                 },
                 itemBuilder: (BuildContext context, int index) {
                   return Slidable(
-                    key: ValueKey(index),
+                    key: ValueKey(items[index].respo),
                     startActionPane: ActionPane(
-                      motion: const BehindMotion(),
+                      extentRatio: 0.25,
+                      motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
                           label: "VALIDER",
                           foregroundColor: Colors.white,
                           icon: Icons.check,
                           backgroundColor: const Color(0xFF05FF00),
-                          onPressed: (context) => {},
+                          onPressed: (context) =>
+                              {_displayTextInputDialog(context)},
                         ),
                       ],
                     ),
                     endActionPane: ActionPane(
-                      motion: const BehindMotion(),
+                      extentRatio: 0.25,
+                      motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
-                          label: "DELETE",
-                          icon: Icons.delete_outline,
-                          backgroundColor: const Color(0xFFFF0000),
-                          onPressed: (context) => {},
-                        ),
+                            label: "DELETE",
+                            icon: Icons.delete_outline_outlined,
+                            backgroundColor: const Color(0xFFFF0000),
+                            onPressed: (context) {
+                              _displayTextInputDialog(context);
+                            }),
                       ],
                     ),
                     child: listTile(index),
@@ -127,17 +234,30 @@ class Validation extends StatelessWidget {
           ),
         ],
       ),
-
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
         ),
         child: BottomNavigationBar(
+          onTap: (int index) {
+            if (index == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            } else if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Validation()),
+              );
+            } else if (index == 2) {}
+          },
+          selectedItemColor: const Color.fromARGB(255, 97, 92, 92),
           backgroundColor: const Color(0xFFD0B3A2),
-          selectedItemColor: const Color.fromARGB(66, 52, 49, 49), // Couleur de l'élément sélectionné
-          unselectedItemColor: const Color.fromARGB(
-              255, 255, 255, 255), // Couleur des éléments non sélectionnés
+          // Couleur de l'élément sélectionné
+          unselectedItemColor: const Color.fromARGB(255, 255, 255, 255),
+          // Couleur des éléments non sélectionnés
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -152,25 +272,6 @@ class Validation extends StatelessWidget {
               label: 'Balance',
             ),
           ],
-          onTap: (int index) {
-            // Handle navigation here
-            if (index == 0) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            } else if (index == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Validation()),
-              );
-            } else if (index == 2) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Validation()),
-              );
-            }
-          },
         ),
       ),
     );
@@ -181,8 +282,19 @@ class Validation extends StatelessWidget {
       color: Colors.white,
       child: ListTile(
         title: Text('Numéro :'
-            " ${infos[index].numero!}\nMontant :${infos[index].montant!}\nRésponsable Sur La Validation :${infos[index].respo!}"),
+            " ${items[index].numero!}\nMontant :${items[index].montant!}\nRésponsable Sur La Validation :${items[index].respo}"),
       ),
     );
   }
 }
+
+/*class AboutWidget extends StatelessWidget {
+  const AboutWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return 
+      
+    
+  }
+}*/

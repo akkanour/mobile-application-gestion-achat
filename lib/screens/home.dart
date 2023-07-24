@@ -322,11 +322,11 @@ class _HomePageState extends State<HomePage> {
                 height: 240, // Réglez la hauteur du graphique selon vos besoins
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: Color.fromARGB(0, 255, 255, 255),
                 ),
                 child: Image.asset(
                   'assets/images/untitled-design-19-1-bg.png',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
