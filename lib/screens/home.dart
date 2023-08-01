@@ -309,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text('Bons de commandes par projet',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 23,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     )),
@@ -322,15 +322,14 @@ class _HomePageState extends State<HomePage> {
                 height: 240, // Réglez la hauteur du graphique selon vos besoins
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(0, 255, 255, 255),
+                  color: const Color.fromARGB(0, 255, 255, 255),
                 ),
                 child: Image.asset(
                   'assets/images/untitled-design-19-1-bg.png',
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
-            Divider(),
           ],
         ),
       ),
@@ -369,12 +368,12 @@ class _HomePageState extends State<HomePage> {
             } else if (index == 1) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Validation()),
+                MaterialPageRoute(builder: (context) => const Validation()),
               );
             } else if (index == 2) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Validation()),
+                MaterialPageRoute(builder: (context) => const Validation()),
               );
             }
           },
