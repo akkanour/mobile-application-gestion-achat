@@ -4,7 +4,6 @@ import 'package:gecimmo_application/data.dart';
 import 'package:gecimmo_application/screens/home.dart';
 import 'package:gecimmo_application/screens/sidemenu.dart';
 
-// ignore: must_be_immutable
 class Validation extends StatefulWidget {
   const Validation({Key? key}) : super(key: key);
 
@@ -287,14 +286,3 @@ class _ValidationState extends State<Validation> {
     );
   }
 }
-
-/*class AboutWidget extends StatelessWidget {
-  const AboutWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return 
-      
-    
-  }
-}*/
