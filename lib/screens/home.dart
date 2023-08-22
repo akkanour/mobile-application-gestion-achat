@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gecimmo_application/screens/sidemenu.dart';
 import 'package:gecimmo_application/screens/validation.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -309,26 +310,67 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text('Bons de commandes par projet',
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     )),
               ],
             ),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Container(
-                height: 240, // Réglez la hauteur du graphique selon vos besoins
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: const Color.fromARGB(0, 255, 255, 255),
+            Container(
+              height : 200,
+              width: 350,
+            child :
+            SfCartesianChart(
+              primaryXAxis: CategoryAxis(
+                labelStyle: const TextStyle(
+                  color: Colors.white,
                 ),
-                child: Image.asset(
-                  'assets/images/untitled-design-19-1-bg.png',
-                  fit: BoxFit.contain,
+                majorTickLines: const MajorTickLines(
+                  color: Colors.white,
+                ),
+                minorTickLines: const MinorTickLines(
+                  color: Colors.white,
+                ),
+                axisLine: const AxisLine(
+                  color: Colors.white,
                 ),
               ),
+              primaryYAxis: NumericAxis(
+                labelStyle: const TextStyle(
+                  color: Colors.white,
+                ),
+                majorTickLines: const MajorTickLines(
+                  color: Colors.white,
+                ),
+                minorTickLines: const MinorTickLines(
+                  color: Colors.white,
+                ),
+                axisLine: const AxisLine(
+                  color: Colors.white,
+                ),
+              ),
+              series: <ChartSeries>[
+                LineSeries<SalesData, String>(
+                  dataSource: <SalesData>[
+                    SalesData('Jan', 35),
+                    SalesData('Feb', 28),
+                    SalesData('Mar', 34),
+                    SalesData('Apr', 32),
+                    SalesData('May', 40),
+                    SalesData('Jun', 55),
+                    SalesData('Jul', 30),
+                    SalesData('Aug', 45),
+                    SalesData('Sep', 20),
+                    SalesData('Oct', 50),
+                    SalesData('Nov', 25),
+                    SalesData('Dec', 48),
+                  ],
+                  xValueMapper: (SalesData sales, _) => sales.month,
+                  yValueMapper: (SalesData sales, _) => sales.sales,
+                )
+              ],
+            ),
             ),
           ],
         ),
@@ -381,4 +423,9 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+class SalesData {
+  SalesData(this.month, this.sales);
+  final String month;
+  final double sales;
 }
