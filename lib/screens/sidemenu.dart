@@ -92,7 +92,7 @@ class SideMenu extends StatelessWidget {
                             builder: (context) => const HomePage()),
                       );
                     }),
-                ListTile(
+                /**ListTile(
                   leading: const Icon(
                     Icons.local_mall_outlined,
                     color: Colors.white,
@@ -104,7 +104,7 @@ class SideMenu extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
                   onTap: () => {},
-                ),
+                ),**/
                 ListTile(
                     leading: const Icon(
                       Icons.currency_exchange,
@@ -122,7 +122,7 @@ class SideMenu extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const Validation()),
                       );
                     }),
-                ListTile(
+                /**ListTile(
                   leading: const Icon(
                     Icons.add_ic_call_outlined,
                     color: Colors.white,
@@ -160,7 +160,7 @@ class SideMenu extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
                   onTap: () => {},
-                ),
+                ),**/
               ],
             ),
             Positioned.fill(
