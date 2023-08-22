@@ -104,22 +104,8 @@ class _MyLoginState extends State<MyLogin> {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.end,
                                   children: [
-                                    TextButton(
-                                        onPressed: () {},
-                                        child: const Text(
-                                          'Forgot Password',
-                                          style: TextStyle(
-                                            decoration:
-                                                TextDecoration.underline,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            fontSize: 18,
-                                            fontFamily: 'Times New Roman',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        )),
                                     CircleAvatar(
                                       radius: 30,
                                       backgroundColor: const Color(0xFFD0B3A2),
