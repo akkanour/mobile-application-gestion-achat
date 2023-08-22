@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gecimmo_application/screens/get_started.dart';
 import 'package:gecimmo_application/screens/home.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: GetStarted(),
     );
   }
 }
