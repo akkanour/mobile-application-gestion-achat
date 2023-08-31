@@ -145,11 +145,12 @@ class _MyLoginState extends State<MyLogin> {
                                 ),
                                 TextField(
                                   controller: passwordController,
+                                  obscureText: true,
                                   decoration: InputDecoration(
                                     fillColor: Colors.white70,
                                     filled: true,
                                     hintText: "Mot de passe",
-                                    hintStyle: TextStyle(
+                                    hintStyle: const TextStyle(
                                       color: Color.fromARGB(255, 84, 83, 83),
                                       fontSize: 20,
                                     ),
@@ -157,13 +158,13 @@ class _MyLoginState extends State<MyLogin> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                           color: Colors
                                               .black), // Couleur de la bordure lorsqu'elle est en focus
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                           color: Colors
                                               .black), // Couleur de la bordure par défaut
                                       borderRadius: BorderRadius.circular(10),
@@ -182,8 +183,7 @@ class _MyLoginState extends State<MyLogin> {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color(0xFFD0B3A2),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10),
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
                                     onPressed: () {
@@ -200,6 +200,18 @@ class _MyLoginState extends State<MyLogin> {
                                         letterSpacing: 0.64,
                                       ),
                                     ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.02,
+                                ),
+                                Text(
+                                  message,
+                                  style: const TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontSize: 15,
+                                    fontFamily: 'times new roman',
                                   ),
                                 ),
                               ],
