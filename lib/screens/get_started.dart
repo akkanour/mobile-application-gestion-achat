@@ -54,7 +54,7 @@ class GetStarted extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const MyLogin(),
+                          builder: (context) =>  const MyLogin(),
                         ),
                       );
                     },

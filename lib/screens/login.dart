@@ -11,7 +11,45 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
-  @override
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  String message = '';
+
+  handleLogin() async {
+    String username = usernameController.text;
+    String password = passwordController.text;
+
+    // Call the magical link
+    String loginUrl = 'https://achat.test.gc-badr.xyz/Api/Login';
+    String fullUrl = '$loginUrl?username=$username&password=$password';
+
+    // You would use your preferred method (e.g., http package) to make the API call
+    // Here, we'll just simulate a response
+    bool success = await simulateApiCall(fullUrl);
+
+    if (success) {
+      // Navigate to the Dashboard
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    } else {
+      setState(() {
+        message = 'Please check your information and try again.';
+      });
+    }
+  }
+
+  Future<bool> simulateApiCall(String url) async {
+    // Simulating the API call
+    await Future.delayed(Duration(seconds: 2));
+    // In a real scenario, you would parse the response and return true/false accordingly
+    return usernameController.text == 'Admin' &&
+        passwordController.text == '123';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,58 +113,94 @@ class _MyLoginState extends State<MyLogin> {
                               children: [
                                 const SizedBox(),
                                 TextField(
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(255, 0, 0, 0)),
+                                  controller: usernameController,
                                   decoration: InputDecoration(
-                                      fillColor: Colors.white70,
-                                      filled: true,
-                                      hintText: "Email",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      )),
+                                    fillColor: Colors.white70,
+                                    filled: true,
+                                    hintText: "Nom d'utilisateur",
+                                    hintStyle: TextStyle(
+                                      color:
+                                          const Color.fromARGB(255, 84, 83, 83),
+                                      fontSize: 20,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors
+                                              .black), // Couleur de la bordure lorsqu'elle est en focus
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors
+                                              .black), // Couleur de la bordure par défaut
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 30,
                                 ),
                                 TextField(
-                                  style: const TextStyle(),
-                                  obscureText: true,
+                                  controller: passwordController,
                                   decoration: InputDecoration(
-                                      fillColor: Colors.white70,
-                                      filled: true,
-                                      hintText: "Password",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      )),
+                                    fillColor: Colors.white70,
+                                    filled: true,
+                                    hintText: "Mot de passe",
+                                    hintStyle: TextStyle(
+                                      color: Color.fromARGB(255, 84, 83, 83),
+                                      fontSize: 20,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors
+                                              .black), // Couleur de la bordure lorsqu'elle est en focus
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors
+                                              .black), // Couleur de la bordure par défaut
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 30,
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.end,
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 30,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.7,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color(0xFFD0B3A2),
-                                      child: IconButton(
-                                          color: Colors.white,
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return const HomePage();
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          icon: const Icon(
-                                            Icons.arrow_forward,
-                                          )),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10),
+                                      ),
                                     ),
-                                  ],
+                                    onPressed: () {
+                                      handleLogin();
+                                    },
+                                    child: const Text(
+                                      "CONTINUE",
+                                      style: TextStyle(
+                                        color: Color(0xFFFFFFFF),
+                                        fontFamily: 'Barlow Semi Condensed',
+                                        fontSize: 32,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w700,
+                                        letterSpacing: 0.64,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
